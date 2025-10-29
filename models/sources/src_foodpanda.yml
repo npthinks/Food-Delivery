@@ -1,0 +1,9 @@
+version: 2
+
+
+sources:
+  - name: bigquery_source
+    database: fooddelivery-project-476514
+    schema: food_delivery_dataset
+    tables: 
+      - name: foodpanda
