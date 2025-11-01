@@ -10,7 +10,7 @@ with base as (
         price,
         payment_method,
         loyalty_points,
-        churned as churned_flag,
+        churned_flag,
         delivery_status
     from {{ ref('stg_foodpanda') }}
 )
