@@ -32,11 +32,11 @@ models:
               field: dish_name
 
       - name: order_date_id
-        description: "Links to dim_date.date"
+        description: "Links to dim_date.date_id"
         tests:
           - relationships:
               to: ref('dim_date')
-              field: date
+              field: date_id
 
       - name: price
         description: "Total price of the dish"
