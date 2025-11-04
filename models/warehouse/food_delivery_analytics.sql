@@ -46,3 +46,5 @@ LEFT JOIN {{ ref('dim_date') }} AS d
   ON f.order_date_id = d.date_id
 WHERE f.price IS NOT NULL
   AND f.quantity IS NOT NULL
+
+  ---
