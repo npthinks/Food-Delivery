@@ -59,3 +59,5 @@ LEFT JOIN {{ ref('dim_date') }} AS dt
 
 WHERE f.price IS NOT NULL
   AND f.quantity IS NOT NULL
+
+  ---
