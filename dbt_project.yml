@@ -37,7 +37,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   food_panda:
-    # Applies to all files under models/example/
+    # Applies to all files under models
     example:
       +materialized: table
       +docs: 

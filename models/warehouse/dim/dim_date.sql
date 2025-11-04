@@ -1,9 +1,10 @@
-select
-    order_date as date_id,
-    extract(year from order_date) as year,
-    extract(month from order_date) as month,
-    extract(day from order_date) as day,
-    extract(dayofweek from order_date) as day_of_week,
-    extract(week from order_date) as week_of_year
-from {{ ref('stg_foodpanda') }}
-group by order_date
+SELECT
+    FORMAT_DATE('%Y%m%d', order_date) AS date_key,
+    order_date AS full_date,
+    EXTRACT(YEAR FROM order_date) AS year,
+    EXTRACT(MONTH FROM order_date) AS month,
+    EXTRACT(DAY FROM order_date) AS day,
+    EXTRACT(DAYOFWEEK FROM order_date) AS day_of_week,
+    EXTRACT(WEEK FROM order_date) AS week_of_year
+FROM {{ ref('stg_foodpanda') }}
+GROUP BY order_date
