@@ -1,33 +1,33 @@
 {{ config(materialized='table') }}
 
+WITH base AS (
+    SELECT DISTINCT
+        o.order_id,
+        o.order_date,
+        o.customer_id,
+        o.restaurant_name,
+        o.dish_name,
+        o.category,
+        o.price,
+        o.quantity
+    FROM {{ ref('dim_orders') }} AS o
+)
+
 SELECT
     -- Foreign Keys
-    f.order_id,
+    o.order_id,
     c.customer_id,
-    d.dish_id,
-    r.restaurant_id,
     dt.date_key AS order_date_key,
-
+    
     -- Metrics
-    f.quantity,
-    f.price AS order_price,
-    f.total_revenue,
-    f.loyalty_points_earned,
-    f.churned_flag,
-    f.payment_method,
-    f.delivery_status
+    o.price AS order_price,
+    o.quantity
 
-FROM {{ ref('stg_fact') }} AS f
-
--- Join to Dimensions for Keys
+FROM base AS o
+-- Join to customer dimension (if you want customer info for each order)
 LEFT JOIN {{ ref('dim_customer') }} AS c
-    ON f.customer_id = c.customer_id
+    ON c.customer_id = o.customer_id -- optionally, you can map if you have customer_id in orders
 
-LEFT JOIN {{ ref('dim_dish') }} AS d
-    ON f.dish_id = d.dish_id
-
-LEFT JOIN {{ ref('dim_restaurant') }} AS r
-    ON f.restaurant_id = r.restaurant_id
-
+-- Join to date dimension
 LEFT JOIN {{ ref('dim_date') }} AS dt
-    ON f.order_date_key = dt.date_key
+    ON o.order_date = dt.full_date
