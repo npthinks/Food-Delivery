@@ -1,5 +1,7 @@
-with base as (
-    select
+{{ config(materialized='table') }}
+
+WITH base AS (
+    SELECT
         order_id,
         customer_id,
         restaurant_name,
@@ -12,19 +14,20 @@ with base as (
         loyalty_points,
         churned_flag,
         delivery_status
-    from {{ ref('stg_foodpanda') }}
+    FROM {{ ref('stg_foodpanda') }}
 )
 
-select
+SELECT
     order_id,
     customer_id,
-    restaurant_name as restaurant_id,
-    dish_name as dish_id,
-    order_date as order_date_id,
+    restaurant_name AS restaurant_id,
+    dish_name AS dish_id,
+    FORMAT_DATE('%Y%m%d', order_date) AS order_date_key,
+    order_date,
     quantity,
     price,
     payment_method,
-    loyalty_points as loyalty_points_earned,
+    loyalty_points AS loyalty_points_earned,
     churned_flag,
     delivery_status
-from base
+FROM base
