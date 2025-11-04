@@ -1,4 +1,4 @@
 SELECT *
-FROM {{ ref('food_delivery_analytics') }}
+FROM {{ ref('analytics') }}
 WHERE order_price <= 0
    OR quantity <= 0
