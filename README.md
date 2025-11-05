@@ -72,7 +72,6 @@ Connect the published models in **BigQuery** to **Looker** for visualization.
 ## 👋 Contact
 
 **Nishanth Perumal**
-💼 Open to **Data Engineering** and **Analytics** roles in the Netherlands.
 🔗 [LinkedIn](https://www.linkedin.com/in/nishanth-perumal-969a71192/)
 
 ---
