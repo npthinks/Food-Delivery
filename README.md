@@ -1,4 +1,4 @@
-# 🍽️ Food Analytics — End-to-End ETL & BI Pipeline
+# 🍽️ Food Delivery Insights — End-to-End ETL & BI Pipeline
 
 An **end-to-end data engineering and analytics project** that transforms raw food delivery data into **decision-ready insights** using **dbt**, **BigQuery**, **Looker**, and **Git**.
 The pipeline automates data ingestion, transformation, testing, and visualization to power dashboards for **revenue**, **churn**, **cuisine performance**, and **regional trends**.
